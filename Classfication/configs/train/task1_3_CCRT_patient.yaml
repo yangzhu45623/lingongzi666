@@ -1,0 +1,39 @@
+timm:
+  ### 下面的参数不用动  ##
+  pretrained: True      
+  gp: null
+  drop: 0.0
+  drop_connect: null
+  drop_path: null
+  drop_block: null
+  bn_tf: False
+  bn_momentum: null
+  bn_eps: null
+  torchscript: True
+
+optim:                      # 优化器的参数
+  lr: 0.01                  # 学习率
+  momentum: 0.9             # 动量，这个不用动
+  wd: 0.0001                # weight-decay，这个不用动
+
+model:
+  model: efficientnet_b0      # 模型名称，这里可以选择,efficientnet_b0,inception_resnet_v2,resnet50,xception,resnet3d,densenet3d和resnext3d
+  num_classes: 3              # 分类的类别，这里分类成几个类别就设置成几个
+  test_model_path: "./output/task1_3/CCRT/{}/{}/model_best.pth"
+
+data:                       # 数据的参数
+  datadir: "C:\\Users\\Administrator\\Desktop\\final data\\task1_3\\CCRT"               # 数据集的根目录
+  num_workers: 4            # 加载数据的进程数
+  batch_size: 8            # 加载数据的批次大小
+  img_num: 10               # 一次使用病人多少图片
+
+run:                        # 训练的参数
+  train: True               # 设置是train还是test, False True
+  train_type: 'patient'       # 训练的方式，可以选择 patient(以病人整体为单位) 或者 image(以单个图片为单位)
+  test_mode: 'all'          # 如果测试的话，选择是 test,train还是all, val
+  epochs: 40                # 训练的epochs
+  start_epoch: 0            # 初始的epoch，断点继续训练才用到
+  print_freq: 10            # 每多少步记录一次，这个不用动
+  outdir: "./output/task1_3/CCRT"                # log和模型保存的路径
+
+alpha: 0.78                 # > alpha 的为A类别
